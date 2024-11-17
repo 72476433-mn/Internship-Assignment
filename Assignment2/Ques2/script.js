@@ -1,33 +1,34 @@
-function findTax(salary) {
-    let taxAmount = 0;
+function calculate(num1, num2, operation) {
+    let result;
 
-    switch (true) {
-        case salary > 0 && salary <= 500000:
-            taxAmount = 0; // 0% tax
+    switch (operation) {
+        case "add":
+            result = num1 + num2;
             break;
-
-        case salary > 500000 && salary <= 1000000:
-            taxAmount = salary * 0.10; // 10% tax
+        case "subtract":
+            result = num1 - num2;
             break;
-
-        case salary > 1000000 && salary <= 1500000:
-            taxAmount = salary * 0.20; // 20% tax
+        case "multiply":
+            result = num1 * num2;
             break;
-
-        case salary > 1500000:
-            taxAmount = salary * 0.30; // 30% tax
+        case "divide":
+            if (num2 !== 0) {
+                result = num1 / num2;
+            } else {
+                result = "Error: Division by zero is not allowed";
+            }
             break;
-
         default:
-            return "Invalid salary"; //  invalid input
+            result = "Error: Invalid operation";
     }
 
-    return taxAmount;
+    return result;
 }
 
-// Example :
-console.log(findTax(450000)); // Output: 0
-console.log(findTax(750000)); // Output: 75000 (10% of 750000)
-console.log(findTax(1250000)); // Output: 250000 (20% of 1250000)
-console.log(findTax(2000000)); // Output: 600000 (30% of 2000000)
-console.log(findTax(-1000));   // Output: "Invalid salary"
+// Example usage:
+console.log(calculate(10, 5, "add"));       // Output: 15
+console.log(calculate(10, 5, "subtract"));  // Output: 5
+console.log(calculate(10, 5, "multiply"));  // Output: 50
+console.log(calculate(10, 5, "divide"));    // Output: 2
+console.log(calculate(10, 0, "divide"));    // Output: Error: Division by zero is not allowed
+console.log(calculate(10, 5, "modulus"));   // Output: Error: Invalid operation
